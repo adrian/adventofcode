@@ -1,14 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from functools import reduce
 from math import floor
+from utils import read_input
 
-with open("day1_input") as f:
-  modules_mass = [int(line) for line in f.readlines()]
+def fuel_required(mass):
+    return int(floor(mass / 3)) - 2
 
-def fuel_required(module_mass):
-  return int(floor(module_mass / 3)) - 2
+def solution(masses):
+    return sum([fuel_required(mass) for mass in masses])
 
-fuel_per_module = [fuel_required(mass) for mass in modules_mass]
-
-print sum(fuel_per_module)
+if __name__ == '__main__':
+    print(solution(read_input('day1_input')))
