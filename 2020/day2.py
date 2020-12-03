@@ -3,6 +3,7 @@
 from utils import read_input_raw
 import re
 import sys
+import os
 
 def count_occurances(letter, string):
     occurances = 0
@@ -37,5 +38,6 @@ def part1_solution(password_data):
     return correct_passwords
 
 if __name__ == '__main__':
+    input_file = os.path.join(os.path.dirname(__file__), 'day2_input')
     #print(part1_solution(read_input_raw('day2_input')))
-    print(part2_solution(read_input_raw('day2_input')))
+    print(part2_solution(read_input_raw(input_file)))
