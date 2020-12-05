@@ -35,11 +35,11 @@ def part1_valid(passport):
             return False
     return True
 
-def part1_solution(raw_passport_data, validation_func):
+def part1_solution(raw_passport_data):
     passports = load_passports(raw_passport_data)
-    valid_passports = [passport for passport in passports if validation_func(passport)]
+    valid_passports = [passport for passport in passports if part1_valid(passport)]
     return len(valid_passports)
 
 if __name__ == '__main__':
     input_file = os.path.join(os.path.dirname(__file__), 'day4_input')
-    print(part1_solution(read_input_raw(input_file), part1_valid))
+    print(part1_solution(read_input_raw(input_file)))
