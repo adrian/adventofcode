@@ -28,18 +28,18 @@ def load_passports(raw_passport_data):
     passports.append(assemble_passport(single_passport_lines))
     return passports
 
-def valid(passport):
+def part1_valid(passport):
     required_fields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
     for field in required_fields:
         if field not in passport:
             return False
     return True
 
-def part1_solution(raw_passport_data):
+def part1_solution(raw_passport_data, validation_func):
     passports = load_passports(raw_passport_data)
-    valid_passports = [passport for passport in passports if valid(passport)]
+    valid_passports = [passport for passport in passports if validation_func(passport)]
     return len(valid_passports)
 
 if __name__ == '__main__':
     input_file = os.path.join(os.path.dirname(__file__), 'day4_input')
-    print(part1_solution(read_input_raw(input_file)))
+    print(part1_solution(read_input_raw(input_file), part1_valid))
