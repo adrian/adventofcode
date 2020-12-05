@@ -29,11 +29,11 @@ def load_passports(raw_passport_data):
     return passports
 
 def valid(passport):
-    if len(passport.keys()) == 8:
-        return True
-    if len(passport.keys()) == 7 and 'cid' not in passport.keys():
-        return True
-    return False
+    required_fields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
+    for field in required_fields:
+        if field not in passport:
+            return False
+    return True
 
 def part1_solution(raw_passport_data):
     passports = load_passports(raw_passport_data)
