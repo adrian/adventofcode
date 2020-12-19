@@ -32,7 +32,8 @@ def load_bags(data):
             if inner_bag_name not in bags.keys():
                 inner_bag = Node(inner_bag_name)
                 bags[inner_bag_name] = inner_bag
-            inner_bag.add_edge(outer_bag, int(bag_desc[0]))
+            # inner_bag.add_edge(outer_bag, int(bag_desc[0]))
+            outer_bag.add_edge(inner_bag, int(bag_desc[0]))
     return bags
 
 def print_bag(bag, depth):
@@ -49,6 +50,12 @@ def explore_parent_bags(bag, visited_bags):
             visited_bags.append(outer_bag.name)
             explore_parent_bags(outer_bag, visited_bags)
 
+def number_of_bags_in(bag):
+    total = 0
+    for bag_edge in bag.edges:
+        total = total + bag_edge.weight + (bag_edge.weight * number_of_bags_in(bag_edge.node))
+    return total
+
 def part1(data):
     bags = load_bags(data)
 
@@ -61,11 +68,16 @@ def part1(data):
     return len(visited_bags)
 
 def part2(data):
-    count = 0
-    return count
+    bags = load_bags(data)
+    shiny_gold_bag = bags['shiny gold']
+    return number_of_bags_in(shiny_gold_bag)
 
 if __name__ == '__main__':
     input_file = os.path.join(os.path.dirname(__file__), 'day7_input')
     data = read_input_raw(input_file)
-    print(part1(data))
-    # print(part2(data))
+
+    # My "map" is uni-directional. To get part 1 working I need to swap
+    # the direction by switching the commented out line in load_bags().
+    # print(part1(data))
+
+    print(part2(data))
