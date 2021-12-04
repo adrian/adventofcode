@@ -8,13 +8,17 @@ import (
 	"strings"
 )
 
-func ReadFileIntoArrayOfInts(filename string) []int {
+func ReadFileIntoArrayOfStrings(filename string) []string {
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	inputAsStrings := strings.Split(string(content), "\n")
+	return strings.Split(string(content), "\n")
+}
+
+func ReadFileIntoArrayOfInts(filename string) []int {
+	inputAsStrings := ReadFileIntoArrayOfStrings(filename)
 	inputAsIntegers := []int{}
 	for _, v := range inputAsStrings {
 		if v == "" {
