@@ -12,6 +12,7 @@ func main() {
 	input := utils.ReadFileIntoArrayOfStrings("day2_input")
 	horizontal_position := 0
 	depth := 0
+	aim := 0
 	for _, command := range input {
 		if command == "" {
 			continue
@@ -19,10 +20,11 @@ func main() {
 		direction, units := parseCommand(command)
 		if direction == "forward" {
 			horizontal_position = horizontal_position + units
+			depth = depth + (aim * units)
 		} else if direction == "down" {
-			depth = depth + units
+			aim = aim + units
 		} else if direction == "up" {
-			depth = depth - units
+			aim = aim - units
 		} else {
 			fmt.Println("Invalid command:", direction)
 			os.Exit(1)
