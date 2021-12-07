@@ -2,6 +2,7 @@ package utils
 
 import (
     "fmt"
+    "log"
     "math"
     "os"
     "strconv"
@@ -28,4 +29,20 @@ func ConvertBinaryToDecimal(number int) int {
         counter++
     }
     return decimal
+}
+
+func Atoi(s string) int {
+    integer, err := strconv.Atoi(s)
+    if err != nil {
+        log.Fatal("Error converting string to integer: ", err)
+    }
+    return integer
+}
+
+func StringArrayToIntArray(stringArray []string) []int {
+    intArray := make([]int, len(stringArray))
+    for i, s := range stringArray {
+        intArray[i] = Atoi(s)
+    }
+    return intArray
 }
