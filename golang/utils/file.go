@@ -50,3 +50,12 @@ func ReadFile(filename string) []string {
 	file.Close()
 	return text
 }
+
+func ReadFileSingleLineOfInts(filename string) []int {
+	contentsAsString := ReadFile(filename)[0]
+	var intArray []int
+	for _, s := range strings.Split(contentsAsString, ",") {
+		intArray = append(intArray, Atoi(s))
+	}
+	return intArray
+}
