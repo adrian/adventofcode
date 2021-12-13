@@ -19,3 +19,7 @@ func Max(values []int) int {
 	}
 	return max
 }
+
+func SumNumbersUpTo(n int) int {
+	return (n * (n - 1)) / 2
+}
