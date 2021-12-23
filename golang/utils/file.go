@@ -10,13 +10,17 @@ import (
 	"strings"
 )
 
-func ReadFileIntoArrayOfStrings(filename string) []string {
+func ReadFileIntoArrayOfStrings(filename string) (lines []string) {
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	return strings.Split(string(content), "\n")
+	lines = strings.Split(string(content), "\n")
+	if lines[len(lines)-1] == "" {
+		lines = lines[0 : len(lines)-1]
+	}
+	return lines
 }
 
 func ReadFileIntoArrayOfInts(filename string) []int {
