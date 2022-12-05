@@ -43,7 +43,7 @@ func ReadFileIntoArrayOfInts(filename string) []int {
 func ReadFile(filename string) []string {
 	file, err := os.Open(filename)
 	if err != nil {
-		log.Fatalf("Problem opening file", filename, err)
+		log.Fatal("Problem opening file", filename, err)
 	}
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
